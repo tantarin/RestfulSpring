@@ -2,6 +2,7 @@ package com.example.rest.controller;
 
 import com.example.rest.entity.Book;
 import com.example.rest.exception.BookNotFoundException;
+import com.example.rest.repository.BookRepository;
 import com.example.rest.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -36,4 +37,9 @@ public class BookController {
     public List<Book> getByLocalDate(@RequestParam("date") LocalDate date) {
         return bookService.findByPublicationDate(date);
     }
+
+//    @PostMapping("/add")
+//    public Book add(@RequestBody Book book) {
+//        return bookRepository.save(book);
+//    }
 }
