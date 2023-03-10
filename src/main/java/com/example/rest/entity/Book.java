@@ -1,10 +1,17 @@
 package com.example.rest.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 
 
 @Entity
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,14 +20,6 @@ public class Book {
 
     @Column(name="publication_date")
     private LocalDate publicationDate;
-
-    public Book() {
-    }
-
-    public Book(String title, LocalDate publicationDate) {
-        this.title = title;
-        this.publicationDate = publicationDate;
-    }
 
     public Book(String title) {
         this.title = title;

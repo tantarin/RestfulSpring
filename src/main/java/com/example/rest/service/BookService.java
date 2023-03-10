@@ -1,6 +1,7 @@
 package com.example.rest.service;
 
 import com.example.rest.entity.Book;
+import com.example.rest.exception.BookNotFoundException;
 import com.example.rest.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,8 +27,14 @@ public class BookService {
         return bookRepository.findByPublicationDate(date);
     }
 
-    public Optional<Book> findById(Long id) {
-       return bookRepository.findById(id);
+    public Book findById(Long id) {
+        Book book = bookRepository.findById(id)
+                .orElseThrow(()->new BookNotFoundException("No Book with ID : "+id));
+        return book;
+    }
+
+    public Book add(Book book) {
+       return bookRepository.save(book);
     }
 
 }

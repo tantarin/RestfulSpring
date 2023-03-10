@@ -28,8 +28,7 @@ public class BookController {
 
     @GetMapping(value="/{id}")
     ResponseEntity<Book> getById(@PathVariable("id") Long id) {
-        Book book = bookService.findById(id)
-                .orElseThrow(()->new BookNotFoundException("No Book with ID : "+id));
+        Book book = bookService.findById(id);
         return ResponseEntity.ok().body(book);
     }
 
@@ -38,8 +37,8 @@ public class BookController {
         return bookService.findByPublicationDate(date);
     }
 
-//    @PostMapping("/add")
-//    public Book add(@RequestBody Book book) {
-//        return bookRepository.save(book);
-//    }
+    @PostMapping("/add")
+    public Book add(@RequestBody Book book) {
+        return bookService.add(book);
+    }
 }
