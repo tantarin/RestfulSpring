@@ -1,6 +1,7 @@
 package com.example.rest.controller;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -35,6 +36,7 @@ public class BookControllerTest {
         Mockito.when(bookService.findAll()).thenReturn(books);
 
         mockMvc.perform(get("/books/all"))
+                .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", Matchers.hasSize(1)))
                 .andExpect(jsonPath("$[0].title", Matchers.is("Re")));
