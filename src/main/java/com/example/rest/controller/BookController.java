@@ -5,6 +5,7 @@ import com.example.rest.exception.BookNotFoundException;
 import com.example.rest.repository.BookRepository;
 import com.example.rest.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,8 +23,8 @@ public class BookController {
     }
 
     @GetMapping(value="/all")
-    List<Book> getAll(){
-        return bookService.getAllBooks();
+    List<Book> getAll(@RequestParam(required = false) String title){
+        return bookService.findAll(title);
     }
 
     @GetMapping(value="/{id}")
@@ -32,14 +33,9 @@ public class BookController {
         return ResponseEntity.ok().body(book);
     }
 
-    @PostMapping("/date")
-    public List<Book> getByLocalDate(@RequestParam("date") LocalDate date) {
-        return bookService.findByPublicationDate(date);
-    }
-
     @GetMapping("/find")
-    public List<Book> getByTitle(@RequestParam("title") String title) {
-        return bookService.findBy(title);
+    public List<Book> getByLocalDate(@RequestParam("date") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date) {
+        return bookService.findByPublicationDate(date);
     }
 
     @PostMapping("/add")

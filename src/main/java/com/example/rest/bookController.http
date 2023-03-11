@@ -4,7 +4,7 @@ Content-Type: application/json
 
 {
   "title": "second",
-  "publicationDate": "2023-03-04"
+  "publicationDate": "2022-03-04"
 }
 
 ####
@@ -12,5 +12,9 @@ GET http://localhost:8080/books/all
 Accept: application/json
 
 ####
-GET http://localhost:8080/books/find?title=first
+GET http://localhost:8080/books/all?title=first
+Accept: application/json
+
+####
+GET http://localhost:8080/books/find?date=2023-03-04
 Accept: application/json
