@@ -37,6 +37,11 @@ public class BookController {
         return bookService.findByPublicationDate(date);
     }
 
+    @GetMapping("/find")
+    public List<Book> getByTitle(@RequestParam("title") String title) {
+        return bookService.findBy(title);
+    }
+
     @PostMapping("/add")
     public Book add(@RequestBody Book book) {
         return bookService.add(book);

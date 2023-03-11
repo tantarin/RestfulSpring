@@ -37,4 +37,9 @@ public class BookService {
        return bookRepository.save(book);
     }
 
+
+    public List<Book> findBy(String title) {
+        return bookRepository.findByTitleContaining(title);
+    }
+
 }
