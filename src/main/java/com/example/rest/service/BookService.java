@@ -19,10 +19,14 @@ public class BookService {
         this.bookRepository = bookRepository;
     }
 
-    public List<Book> findAll(String title) {
+    public List<Book> findAllBy(String title) {
         if (title != null) {
             return bookRepository.findByTitleContaining(title);
         }
+        return findAll();
+    }
+
+    public List<Book> findAll() {
         return (List<Book>) bookRepository.findAll();
     }
 

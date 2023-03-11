@@ -10,6 +10,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.mock.mockito.MockBean;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
@@ -22,7 +23,7 @@ import static org.mockito.Mockito.when;
 public class BookServiceTest {
     @InjectMocks
     private BookService service;
-    @Mock
+    @MockBean
     private BookRepository repository;
     private Book book;
 

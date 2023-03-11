@@ -25,7 +25,7 @@ public class BookController {
 
     @GetMapping(value="/all")
     List<Book> getAll(@RequestParam(required = false) String title){
-        return bookService.findAll(title);
+        return bookService.findAllBy(title);
     }
 
     @GetMapping(value="/{id}")

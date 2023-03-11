@@ -32,7 +32,7 @@ public class BookControllerTest {
         Book book = new Book(1L, "Re", LocalDate.now());
         List<Book> books = Collections.singletonList(book);
 
-        Mockito.when(bookService.getAllBooks()).thenReturn(books);
+        Mockito.when(bookService.findAll()).thenReturn(books);
 
         mockMvc.perform(get("/books/all"))
                 .andExpect(status().isOk())
