@@ -6,6 +6,7 @@ import com.example.rest.repository.BookRepository;
 import com.example.rest.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -42,4 +43,15 @@ public class BookController {
     public Book add(@RequestBody Book book) {
         return bookService.add(book);
     }
+
+//    @PatchMapping("/employees/{id}/{firstName}")
+//    public ResponseEntity<Employee> updateEmployeePartially(@PathVariable Long id, @PathVariable String firstName) {
+//        try {
+//            Employee employee = employeeRepository.findById(id).get();
+//            employee.setFirstName(firstName);
+//            return new ResponseEntity<Employee>(employeeRepository.save(employee), HttpStatus.OK);
+//        } catch (Exception e) {
+//            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+//        }
+//    }
 }
