@@ -44,6 +44,11 @@ public class BookController {
         return bookService.add(book);
     }
 
+    @DeleteMapping("/delete/{id}")
+    public void delete(@PathVariable("id") Long id) {
+        bookService.delete(id);
+    }
+
 //    @PatchMapping("/employees/{id}/{firstName}")
 //    public ResponseEntity<Employee> updateEmployeePartially(@PathVariable Long id, @PathVariable String firstName) {
 //        try {

@@ -49,4 +49,8 @@ public class BookService {
         return bookRepository.findByTitleContaining(title);
     }
 
+    public void delete(Long id) {
+        bookRepository.deleteById(id);
+    }
+
 }

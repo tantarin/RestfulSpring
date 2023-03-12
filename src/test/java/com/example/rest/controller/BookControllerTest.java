@@ -1,9 +1,9 @@
 package com.example.rest.controller;
 
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.BDDMockito.willDoNothing;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -100,12 +100,12 @@ public class BookControllerTest {
 //                .andExpect(jsonPath("$.id", Matchers.equalTo(2)))
 //                .andExpect(jsonPath("$.name", Matchers.equalTo("John")));
 //    }
-//    @Test
-//    public void testDeleteExample() throws Exception {
-//        Mockito.when(studentService.deleteStudent(ArgumentMatchers.anyString())).thenReturn("Student is deleted");
-//        MvcResult requestResult = mockMvc.perform(delete("/deleteMapping").param("student-id", "1"))
-//                .andExpect(status().isOk()).andExpect(status().isOk()).andReturn();
-//        String result = requestResult.getResponse().getContentAsString();
-//        assertEquals(result, "Student is deleted");
-//    }
+    @Test
+    public void givenAnyId_whenDeleteBook_thenReturn200() throws Exception {
+        willDoNothing().given(bookService).delete(any());
+
+        mockMvc.perform(delete("/books/delete/{id}", 1L))
+                .andExpect(status().isOk())
+                .andDo(print());
+    }
 }
