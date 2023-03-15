@@ -1,15 +1,17 @@
 package com.example.rest.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 
 
 @Entity
 @Builder
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class Book {
@@ -17,35 +19,17 @@ public class Book {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
-
-    @Column(name="publication_date")
     private LocalDate publicationDate;
 
-    public Book(String title) {
-        this.title = title;
-    }
+    private BigDecimal price;
 
-    public Long getId() {
-        return id;
-    }
+    @ManyToOne
+    @JoinColumn(name = "author_id")
+    private Author author;
 
-    public void setId(Long id) {
+    public Book(Long id, String title, LocalDate publicationDate) {
         this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
         this.title = title;
-    }
-
-    public LocalDate getPublicationDate() {
-        return publicationDate;
-    }
-
-    public void setPublicationDate(LocalDate publicationDate) {
         this.publicationDate = publicationDate;
     }
 }
