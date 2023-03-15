@@ -1,5 +1,6 @@
 package com.example.rest.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -25,6 +26,7 @@ public class Book {
 
     @ManyToOne
     @JoinColumn(name = "author_id")
+    @JsonIgnore
     private Author author;
 
     public Book(Long id, String title, LocalDate publicationDate) {
