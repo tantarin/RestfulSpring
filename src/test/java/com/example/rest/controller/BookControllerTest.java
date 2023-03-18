@@ -36,8 +36,6 @@ public class BookControllerTest {
     @Autowired
     MockMvc mockMvc;
 
-    private static ObjectMapper mapper = new ObjectMapper();
-
     @Test
     public void testfindAll() throws Exception {
         Book book = new Book(1L, "Re", LocalDate.now());
@@ -65,29 +63,22 @@ public class BookControllerTest {
                 .andExpect(jsonPath("$[0].title", Matchers.is("Re")));
     }
 
-//    @Test
-//    public void getEmployeeByIdAPI() throws Exception
-//    {
-//        mvc.perform( MockMvcRequestBuilders
-//                        .get("/employees/{id}", 1)
-//                        .accept(MediaType.APPLICATION_JSON))
-//                .andDo(print())
-//                .andExpect(status().isOk())
-//                .andExpect(MockMvcResultMatchers.jsonPath("$.employeeId").value(1));
-//    }
+    @Test
+    public void testPostExample() throws Exception {
+        Book book = new Book();
+        book.setId(1L);
+        book.setTitle("Arun");
+        String json = new ObjectMapper().writeValueAsString(book);
 
-//    @Test
-//    public void testPostExample() throws Exception {
-//        Student student = new Student();
-//        student.setId(1);
-//        student.setName("Arun");
-//        Mockito.when(studentService.saveStudent(ArgumentMatchers.any())).thenReturn(student);
-//        String json = mapper.writeValueAsString(student);
-//        mockMvc.perform(post("/postMapping").contentType(MediaType.APPLICATION_JSON).characterEncoding("utf-8")
-//                        .content(json).accept(MediaType.APPLICATION_JSON)).andExpect(status().isCreated())
-//                .andExpect(jsonPath("$.id", Matchers.equalTo(1)))
-//                .andExpect(jsonPath("$.name", Matchers.equalTo("Arun")));
-//    }
+        Mockito.when(bookService.add(any())).thenReturn(book);
+
+        mockMvc.perform(post("/books/add")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(json).accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id", Matchers.equalTo(1)))
+                .andExpect(jsonPath("$.title", Matchers.equalTo("Arun")));
+    }
 //    @Test
 //    public void testPutExample() throws Exception {
 //        Student student = new Student();

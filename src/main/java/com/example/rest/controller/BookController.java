@@ -49,6 +49,14 @@ public class BookController {
         bookService.delete(id);
     }
 
+    @ResponseStatus(value = HttpStatus.NOT_FOUND, reason = "No such book with this id")
+    public class MyCustomException extends RuntimeException {
+
+        public MyCustomException(String message){
+            super(message);
+        }
+    }
+
 //    @PatchMapping("/employees/{id}/{firstName}")
 //    public ResponseEntity<Employee> updateEmployeePartially(@PathVariable Long id, @PathVariable String firstName) {
 //        try {

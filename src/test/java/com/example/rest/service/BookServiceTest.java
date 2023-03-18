@@ -6,16 +6,14 @@ import lombok.var;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.junit4.SpringRunner;
 
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.BDDMockito.given;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 
@@ -23,7 +21,7 @@ import static org.mockito.Mockito.when;
 public class BookServiceTest {
     @InjectMocks
     private BookService service;
-    @MockBean
+    @Mock
     private BookRepository repository;
     private Book book;
 
@@ -36,7 +34,7 @@ public class BookServiceTest {
     }
 
     @Test
-    void shouldCreateNewBook() {
+    void givenBookObject_whenSaveBook_thenReturnBookObject() {
         // Arrange
         when(repository.save(book)).thenReturn(book);
 
